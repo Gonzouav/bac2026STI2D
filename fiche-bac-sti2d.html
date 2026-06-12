@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche de Révision — Bac STI2D 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F0F2F7;--card:#FFFFFF;--dark:#16213E;--dark2:#0A1628;
+  --math:#2764E7;--math-l:#EEF3FF;--math-b:rgba(39,100,231,.18);
+  --phys:#D9620A;--phys-l:#FFF3EB;--phys-b:rgba(217,98,10,.18);
+  --tech:#0B9E6A;--tech-l:#EAFAF4;--tech-b:rgba(11,158,106,.18);
+  --text:#1E293B;--muted:#64748B;--faint:#94A3B8;--border:rgba(0,0,0,.07);
+  --font:'Sora',sans-serif;--mono:'Space Mono',monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:13.5px;line-height:1.65}
+a{color:inherit;text-decoration:none}
+
+/* HEADER */
+.hdr{background:var(--dark2);color:#fff;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.hdr-brand{font-size:14px;font-weight:600;letter-spacing:-.02em}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,.4);margin-top:1px}
+.hdr-badge{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.bm{background:rgba(39,100,231,.25);color:#93BBFF}
+.bp{background:rgba(217,98,10,.25);color:#FDBA74}
+.bt{background:rgba(11,158,106,.25);color:#6EE7B7}
+.tab-nav{display:flex;padding:0 16px}
+.tnb{padding:9px 18px;border:none;background:none;color:rgba(255,255,255,.45);font-family:var(--font);font-size:13px;font-weight:500;cursor:pointer;position:relative;transition:color .12s;letter-spacing:-.01em}
+.tnb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2.5px;background:transparent;border-radius:2px 2px 0 0;transition:background .12s}
+.tnb:hover{color:rgba(255,255,255,.75)}
+.tnb.am{color:#93BBFF}.tnb.am::after{background:#93BBFF}
+.tnb.ap{color:#FDBA74}.tnb.ap::after{background:#FDBA74}
+.tnb.at{color:#6EE7B7}.tnb.at::after{background:#6EE7B7}
+
+/* LAYOUT */
+.wrap{display:flex;max-width:1180px;margin:0 auto;padding:20px 14px;gap:18px;align-items:flex-start}
+.side{width:210px;flex-shrink:0;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow-y:auto;scrollbar-width:thin}
+.side::-webkit-scrollbar{width:4px}.side::-webkit-scrollbar-thumb{background:var(--border)}
+.sp{display:none}.sp.on{display:block}
+.stitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);padding:8px 10px 4px}
+.slink{display:flex;align-items:center;gap:6px;padding:5px 10px;font-size:12.5px;color:var(--muted);border-radius:6px;border-left:2px solid transparent;transition:all .1s;cursor:pointer}
+.slink:hover{background:white;color:var(--text)}
+.slink.sm:hover{border-left-color:var(--math);color:var(--math)}
+.slink.sp2:hover{border-left-color:var(--phys);color:var(--phys)}
+.slink.st:hover{border-left-color:var(--tech);color:var(--tech)}
+.sn{width:17px;height:17px;border-radius:3px;font-size:9px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.snm{background:var(--math-l);color:var(--math)}.snp{background:var(--phys-l);color:var(--phys)}.snt{background:var(--tech-l);color:var(--tech)}
+
+/* MAIN */
+.main{flex:1;min-width:0}
+.tab{display:none}.tab.on{display:block}
+
+/* TAB INTRO BANNER */
+.tbanner{border-radius:10px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.tbanner.m{background:var(--math-l);border-left:4px solid var(--math)}
+.tbanner.p{background:var(--phys-l);border-left:4px solid var(--phys)}
+.tbanner.t{background:var(--tech-l);border-left:4px solid var(--tech)}
+.tbl{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.tbm{color:var(--math)}.tbp{color:var(--phys)}.tbt{color:var(--tech)}
+.tbsub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* SECTION CARDS */
+.sc{background:var(--card);border-radius:11px;border:1px solid var(--border);margin-bottom:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.sh{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;transition:background .1s}
+.sh:hover{background:#FAFBFF}
+.sh.m{border-left:3px solid var(--math)}.sh.p{border-left:3px solid var(--phys)}.sh.t{border-left:3px solid var(--tech)}
+.shl{display:flex;align-items:center;gap:9px}
+.chn{font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px}
+.cm{background:var(--math-l);color:var(--math)}.cp{background:var(--phys-l);color:var(--phys)}.ct{background:var(--tech-l);color:var(--tech)}
+.cht{font-size:13.5px;font-weight:600}
+.shr{display:flex;align-items:center;gap:7px}
+.prio{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+.p3{background:#FEF3C7;color:#B45309}.p2{background:#DBEAFE;color:#1D4ED8}.p1{background:#F1F5F9;color:#475569}
+.tog{font-size:18px;color:var(--faint);transition:transform .2s;line-height:1}
+.tog.open{transform:rotate(180deg)}
+.sb{padding:16px 18px;display:none}
+.sb.open{display:block}
+
+/* CONTENT ELEMENTS */
+.sub{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.sub:first-child{margin-top:0}
+
+/* FORMULA BLOCKS */
+.fb{background:#0D1829;color:#CBD5E1;border-radius:8px;padding:11px 14px;font-family:var(--mono);font-size:12px;line-height:1.9;margin:7px 0;overflow-x:auto;border-left:3px solid var(--math)}
+.fb.pp{border-left-color:var(--phys)}.fb.tt{border-left-color:var(--tech)}
+.c{color:#64748B;font-style:italic}.hl{color:#7DD3FC;font-weight:700}
+.hlp{color:#FCD34D;font-weight:700}.hlt{color:#6EE7B7;font-weight:700}
+.hlr{color:#FCA5A5;font-weight:700}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:7px 0}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin:7px 0}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:7px 0}
+@media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+/* MINI CARDS */
+.mc{background:var(--bg);border-radius:7px;padding:9px 11px;border:1px solid var(--border)}
+.mcl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin-bottom:3px}
+.mcv{font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.5}
+
+/* METHOD BOX */
+.mbox{background:#F0FDF9;border-radius:8px;padding:11px 14px;border-left:3px solid var(--tech);margin:7px 0}
+.mbt{font-size:11px;font-weight:700;color:#065F46;margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.mlist{list-style:none;counter-reset:s}
+.mlist li{counter-increment:s;padding:3px 0 3px 22px;position:relative;font-size:12.5px;color:#064E3B}
+.mlist li::before{content:counter(s);position:absolute;left:0;width:16px;height:16px;background:var(--tech);color:white;border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;top:5px}
+
+/* WARNING BOX */
+.wbox{background:#FFF5F5;border-radius:8px;padding:9px 13px;border-left:3px solid #EF4444;margin:7px 0;font-size:12.5px;color:#7F1D1D}
+.wbt{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#B91C1C;margin-bottom:3px}
+
+/* INFO BOX */
+.ibox{background:#EFF6FF;border-radius:8px;padding:9px 13px;border-left:3px solid #3B82F6;margin:7px 0;font-size:12.5px;color:#1E3A5F}
+.ibt{font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:#1D4ED8;margin-bottom:3px}
+
+/* PROPERTY LIST */
+.plist{list-style:none;padding:0}
+.plist li{padding:4px 0 4px 14px;position:relative;font-size:12.5px;border-bottom:1px solid var(--border)}
+.plist li:last-child{border-bottom:none}
+.plist li::before{content:'›';position:absolute;left:0;color:var(--faint);font-weight:700}
+
+/* TABLES */
+.tbl2{width:100%;border-collapse:collapse;font-size:12.5px;margin:7px 0}
+.tbl2 th{background:var(--bg);padding:6px 9px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border-bottom:2px solid var(--border)}
+.tbl2 td{padding:5px 9px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12px}
+.tbl2 tr:last-child td{border-bottom:none}
+.tbl2 tr:hover td{background:#FAFBFF}
+
+/* CODE BLOCKS */
+.cb{background:#0D1829;color:#E2E8F0;border-radius:8px;padding:13px 15px;font-family:var(--mono);font-size:11.5px;line-height:1.75;margin:7px 0;overflow-x:auto}
+.kw{color:#C084FC}.str{color:#86EFAC}.fn{color:#7DD3FC}.num{color:#FCD34D}.cmt{color:#4B5563}
+
+/* SPECTRUM BAR */
+.specbar{display:flex;height:26px;border-radius:6px;overflow:hidden;margin:7px 0;font-size:8.5px}
+.seg{flex:1;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.9);font-weight:600;padding:0 1px;text-align:center;letter-spacing:-.01em}
+
+/* PRINT */
+@media print{
+  .hdr{position:static}.side{display:none}
+  .tab{display:block!important}.sb{display:block!important}
+  .sc{break-inside:avoid}.hdr-sub,.tog{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="hdr-brand">📘 Fiche de Révision — Bac STI2D 2026</div>
+      <div class="hdr-sub">Épreuve PCM le 16 juin · 2I2D le 17 juin · Coefficient 16 chacune</div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span class="hdr-badge bm">Maths 6 pts</span>
+      <span class="hdr-badge bp">Phys-Chimie 14 pts</span>
+      <span class="hdr-badge bt">2I2D coeff 16</span>
+    </div>
+  </div>
+  <div class="tab-nav">
+    <button class="tnb am" onclick="showTab('math',this)">📐 Mathématiques</button>
+    <button class="tnb" onclick="showTab('phys',this)">⚛️ Physique-Chimie</button>
+    <button class="tnb" onclick="showTab('tech',this)">⚙️ 2I2D / SIN</button>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="wrap">
+
+<!-- SIDEBAR -->
+<div class="side">
+  <!-- Math sidebar -->
+  <div class="sp on" id="side-math">
+    <div class="stitle">Mathématiques</div>
+    <div class="slink sm" onclick="goTo('m1')"><span class="sn snm">1</span>Limites & Asymptotes</div>
+    <div class="slink sm" onclick="goTo('m2')"><span class="sn snm">2</span>Fonction Exponentielle</div>
+    <div class="slink sm" onclick="goTo('m3')"><span class="sn snm">3</span>Fonction ln</div>
+    <div class="slink sm" onclick="goTo('m4')"><span class="sn snm">4</span>Équations Différentielles</div>
+    <div class="slink sm" onclick="goTo('m5')"><span class="sn snm">5</span>Nombres Complexes</div>
+    <div class="slink sm" onclick="goTo('m6')"><span class="sn snm">6</span>Calcul Intégral</div>
+    <div class="slink sm" onclick="goTo('m7')"><span class="sn snm">7</span>Transfo. Plan Complexe</div>
+    <div class="slink sm" onclick="goTo('m8')"><span class="sn snm">8</span>Compositions de fonctions</div>
+  </div>
+  <!-- Phys sidebar -->
+  <div class="sp" id="side-phys">
+    <div class="stitle">Physique-Chimie</div>
+    <div class="slink sp2" onclick="goTo('p1')"><span class="sn snp">1</span>Mesures & Incertitudes</div>
+    <div class="slink sp2" onclick="goTo('p2')"><span class="sn snp">2</span>Énergie Électrique ★★★</div>
+    <div class="slink sp2" onclick="goTo('p3')"><span class="sn snp">3</span>Oxydo-réduction</div>
+    <div class="slink sp2" onclick="goTo('p4')"><span class="sn snp">4</span>Échanges Thermiques</div>
+    <div class="slink sp2" onclick="goTo('p5')"><span class="sn snp">5</span>Énergie Mécanique</div>
+    <div class="slink sp2" onclick="goTo('p6')"><span class="sn snp">6</span>Radioactivité</div>
+    <div class="slink sp2" onclick="goTo('p7')"><span class="sn snp">7</span>Ondes Sonores</div>
+    <div class="slink sp2" onclick="goTo('p8')"><span class="sn snp">8</span>Ondes EM & Photons</div>
+    <div class="slink sp2" onclick="goTo('p9')"><span class="sn snp">9</span>Matière & Matériaux</div>
+  </div>
+  <!-- Tech sidebar -->
+  <div class="sp" id="side-tech">
+    <div class="stitle">2I2D / SIN</div>
+    <div class="slink st" onclick="goTo('t1')"><span class="sn snt">1</span>Analyse Fonctionnelle</div>
+    <div class="slink st" onclick="goTo('t2')"><span class="sn snt">2</span>Chaîne Fonctionnelle</div>
+    <div class="slink st" onclick="goTo('t3')"><span class="sn snt">3</span>Systèmes Numériques</div>
+    <div class="slink st" onclick="goTo('t4')"><span class="sn snt">4</span>Réseaux & Protocoles</div>
+    <div class="slink st" onclick="goTo('t5')"><span class="sn snt">5</span>Programmation</div>
+    <div class="slink st" onclick="goTo('t6')"><span class="sn snt">6</span>Développement Durable</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<!-- ================== TAB MATH ================== -->
+<div class="tab on" id="tab-math">
+<div class="tbanner m">
+  <div>
+    <div class="tbl tbm">Mathématiques</div>
+    <div class="tbsub">6 points sur 20 · Équations diff. + Complexes + Intégrale = priorités absolues</div>
+  </div>
+</div>
+
+<!-- M1: Limites -->
+<div class="sc" id="m1">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M1</span><span class="cht">Limites d'une fonction & Asymptotes</span></div>
+  <div class="shr"><span class="prio p1">★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Définitions</div>
+  <ul class="plist">
+    <li><b>Asymptote horizontale</b> : si lim<sub>x→±∞</sub> f(x) = L → équation <b>y = L</b></li>
+    <li><b>Asymptote verticale</b> : si lim<sub>x→a</sub> f(x) = ±∞ → équation <b>x = a</b></li>
+    <li><b>Asymptote oblique</b> : si lim<sub>x→±∞</sub> [f(x) − (ax+b)] = 0 → équation <b>y = ax+b</b></li>
+  </ul>
+  <div class="sub">Lecture graphique</div>
+  <div class="fb">
+<span class="c">// Sur le graphe, repérer :</span>
+<span class="hl">Horizontale</span> → la courbe se rapproche d'une droite horizontale en ±∞
+<span class="hl">Verticale</span>   → la courbe "s'emballe" près d'un x = a
+<span class="hl">Oblique</span>     → la courbe se rapproche d'une droite y=ax+b en ±∞
+  </div>
+  <div class="sub">Limites usuelles à connaître</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">e<sup>x</sup> → +∞</div><div class="mcv">lim<sub>x→+∞</sub> eˣ = +∞</div></div>
+    <div class="mc"><div class="mcl">e<sup>x</sup> → 0</div><div class="mcv">lim<sub>x→−∞</sub> eˣ = 0</div></div>
+    <div class="mc"><div class="mcl">ln(x) → +∞</div><div class="mcv">lim<sub>x→+∞</sub> ln x = +∞</div></div>
+    <div class="mc"><div class="mcl">ln(x) → −∞</div><div class="mcv">lim<sub>x→0⁺</sub> ln x = −∞</div></div>
+  </div>
+  <div class="ibox"><div class="ibt">Priorité</div>L'exponentielle <b>l'emporte</b> sur tout polynôme : lim eˣ/xⁿ = +∞ en +∞. Le logarithme croît moins vite que x : lim ln(x)/x = 0 en +∞.</div>
+</div>
+</div>
+
+<!-- M2: Exponentielle -->
+<div class="sc" id="m2">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M2</span><span class="cht">Fonction Exponentielle</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Propriétés fondamentales</div>
+  <ul class="plist">
+    <li>Domaine : ℝ → Image : ]0 ; +∞[ (jamais nulle, jamais négative)</li>
+    <li>(eˣ)' = eˣ : elle est sa propre dérivée !</li>
+    <li>Strictement croissante sur ℝ ; convexe</li>
+    <li>e⁰ = 1 ; e¹ = e ≈ 2,718</li>
+  </ul>
+  <div class="sub">Formules algébriques — SAVOIR PAR CŒUR</div>
+  <div class="fb">
+<span class="hl">e^(a+b) = eᵃ × eᵇ</span>         <span class="c">// produit → somme des exposants</span>
+<span class="hl">e^(a-b) = eᵃ / eᵇ</span>         <span class="c">// quotient → différence</span>
+<span class="hl">(eᵃ)ⁿ  = e^(na)</span>           <span class="c">// puissance → produit</span>
+<span class="hl">e^(-x) = 1/eˣ</span>             <span class="c">// inverse</span>
+<span class="hl">e^0    = 1</span>
+  </div>
+  <div class="sub">Fonctions du type e<sup>u</sup></div>
+  <div class="fb">
+<span class="c">// Dérivée (règle de la chaîne) :</span>
+(e<span class="hl">ᵘ</span>)' = <span class="hl">u'</span> × eᵘ
+
+<span class="c">// Primitive :</span>
+∫ <span class="hl">u'</span> × eᵘ dx = eᵘ + C
+
+<span class="c">// Exemple : f(x) = e^(3x²+1) → f'(x) = 6x × e^(3x²+1)</span>
+  </div>
+  <div class="sub">Résolution d'équations / inéquations</div>
+  <div class="fb">
+e^f(x) = e^g(x)  ⟺  <span class="hl">f(x) = g(x)</span>
+e^f(x) = k (k>0) ⟺  <span class="hl">f(x) = ln(k)</span>
+e^f(x) > 0       →   <span class="hlr">TOUJOURS vrai</span> (pas de condition)
+e^f(x) > k (k>0) ⟺  <span class="hl">f(x) > ln(k)</span>
+  </div>
+  <div class="mbox">
+    <div class="mbt">⚠️ Pièges fréquents</div>
+    <ul class="mlist">
+      <li>e^f(x) = 0 est <b>impossible</b> — ne jamais écrire cette équation</li>
+      <li>Bien appliquer u' dans (eᵘ)' = u'·eᵘ — ne pas oublier la dérivée intérieure</li>
+      <li>eᵃ × eᵇ ≠ e^(a×b) — c'est e^(a+b) !</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<!-- M3: ln -->
+<div class="sc" id="m3">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M3</span><span class="cht">Fonction Logarithme ln</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Propriétés fondamentales</div>
+  <ul class="plist">
+    <li>ln est la réciproque de exp : ln(eˣ) = x et e^(ln x) = x pour x > 0</li>
+    <li>Domaine : ]0 ; +∞[ ; Image : ℝ</li>
+    <li>(ln x)' = 1/x ; (ln u)' = u'/u</li>
+    <li>Strictement croissante ; ln(1) = 0 ; ln(e) = 1</li>
+  </ul>
+  <div class="sub">Formules algébriques — SAVOIR PAR CŒUR</div>
+  <div class="fb">
+<span class="hl">ln(a × b) = ln a + ln b</span>    <span class="c">// (a,b > 0)</span>
+<span class="hl">ln(a / b) = ln a − ln b</span>    <span class="c">// (a,b > 0)</span>
+<span class="hl">ln(aⁿ)   = n × ln a</span>
+<span class="hl">ln(√a)   = ½ × ln a</span>
+<span class="hl">ln(1/a)  = −ln a</span>
+<span class="hl">ln(1)    = 0 ; ln(e) = 1</span>
+  </div>
+  <div class="sub">Dérivées avec ln</div>
+  <div class="fb">
+(ln x)' = <span class="hl">1/x</span>
+(ln u)' = <span class="hl">u'/u</span>                <span class="c">// règle de la chaîne</span>
+(ln|u|)' = u'/u                <span class="c">// pour les primitives</span>
+∫ u'/u dx = <span class="hl">ln|u| + C</span>
+  </div>
+  <div class="sub">Résolution d'équations / inéquations</div>
+  <div class="fb">
+ln(f(x)) = ln(g(x))  ⟺  <span class="hl">f(x) = g(x)  ET  f(x) > 0</span>
+ln(f(x)) = k          ⟺  <span class="hl">f(x) = eᵏ</span>
+ln(f(x)) > 0          ⟺  <span class="hl">f(x) > 1</span>   (ln croissante, ln(1)=0)
+ln(f(x)) < 0          ⟺  <span class="hl">0 < f(x) < 1</span>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Piège</div>Toujours vérifier que f(x) > 0 avant d'écrire ln(f(x)). Une équation ln(f(x)) = ... nécessite la condition f(x) > 0 en plus de la solution trouvée.</div>
+</div>
+</div>
+
+<!-- M4: Équations différentielles -->
+<div class="sc" id="m4">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M4</span><span class="cht">Équations Différentielles</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog open">▾</span></div>
+</div>
+<div class="sb open">
+  <div class="ibox"><div class="ibt">Pourquoi c'est prioritaire ?</div>Ces équations sont omniprésentes en physique (circuits RC, thermique, radioactivité). Un exercice bac sur deux combine équation diff. et physique !</div>
+  <div class="sub">Forme y' = ay (sans second membre)</div>
+  <div class="fb">
+Équation : y' = <span class="hl">a</span>·y
+
+Solution générale : <span class="hl">y(t) = C × e^(at)</span>,  C ∈ ℝ
+
+Avec condition initiale y(0) = y₀ :
+  <span class="hl">y(t) = y₀ × e^(at)</span>
+  </div>
+  <div class="sub">Forme y' = ay + b (avec second membre) ← LE PLUS COURANT</div>
+  <div class="fb">
+Équation : y' = <span class="hl">a</span>·y + <span class="hlp">b</span>
+
+<span class="c">// Étape 1 : Solution particulière (poser y = k, donc y' = 0)</span>
+  0 = a·k + b  →  k = <span class="hlp">-b/a</span>
+
+<span class="c">// Étape 2 : Solution générale</span>
+  y(t) = C·e^(at) + k  =  C·e^(at) <span class="hlp">- b/a</span>
+
+<span class="c">// Étape 3 : Condition initiale y(0) = y₀</span>
+  C + k = y₀  →  C = y₀ - k = y₀ <span class="hl">+ b/a</span>
+
+<span class="c">// Solution finale :</span>
+  <span class="hl">y(t) = (y₀ + b/a) × e^(at) - b/a</span>
+  </div>
+  <div class="mbox">
+    <div class="mbt">✅ Méthode en 5 étapes</div>
+    <ol class="mlist">
+      <li>Identifier a et b dans l'équation y' = ay + b</li>
+      <li>Trouver la solution particulière constante k = −b/a</li>
+      <li>Écrire la solution générale : y = C·eᵃᵗ + k</li>
+      <li>Appliquer la condition initiale y(0) = y₀ → trouver C</li>
+      <li>Vérifier en calculant y' et en réinjectant dans l'équation</li>
+    </ol>
+  </div>
+  <div class="sub">Interprétation physique</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">a < 0 (stabilité)</div><div class="mcv">y → −b/a quand t→+∞<br>Régime transitoire amorti</div></div>
+    <div class="mc"><div class="mcl">Constante de temps τ</div><div class="mcv">τ = −1/a (si a < 0)<br>À t = τ : e^(at) = e⁻¹ ≈ 0,37</div></div>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Erreur classique du bac</div>Oublier d'appliquer la condition initiale → C reste indéterminé. <b>Toujours</b> trouver C à partir de y(0) = y₀. Un résultat avec C inconnu est incomplet.</div>
+</div>
+</div>
+
+<!-- M5: Complexes -->
+<div class="sc" id="m5">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M5</span><span class="cht">Nombres Complexes</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Forme algébrique</div>
+  <div class="fb">
+z = <span class="hl">a + ib</span>          <span class="c">// a = Re(z) partie réelle, b = Im(z) partie imaginaire</span>
+z̄ = <span class="hl">a − ib</span>          <span class="c">// conjugué</span>
+|z| = <span class="hl">√(a²+b²)</span>      <span class="c">// module</span>
+i² = <span class="hl">−1</span>              <span class="c">// définition de i</span>
+
+<span class="c">// Division : multiplier numérateur ET dénominateur par le conjugué</span>
+z₁/z₂ = z₁ × z̄₂ / |z₂|²
+  </div>
+  <div class="sub">Module et argument</div>
+  <div class="fb">
+|z| = √(a²+b²)     <span class="c">// module (toujours positif)</span>
+
+arg(z) = θ  tel que  <span class="hl">cos θ = a/|z|</span>  et  <span class="hl">sin θ = b/|z|</span>
+
+<span class="c">// Propriétés :</span>
+|z₁·z₂|      = |z₁| × |z₂|
+|z₁/z₂|      = |z₁| / |z₂|
+arg(z₁·z₂)   = arg(z₁) + arg(z₂)
+arg(z₁/z₂)   = arg(z₁) − arg(z₂)
+  </div>
+  <div class="sub">Forme exponentielle (forme trigonométrique)</div>
+  <div class="fb">
+Forme trigonométrique : z = |z| × (cos θ + i sin θ)
+Forme exponentielle   : z = |z| × <span class="hl">e^(iθ)</span>
+
+<span class="c">// Formule d'Euler (fondamentale !) :</span>
+<span class="hl">e^(iθ) = cos θ + i sin θ</span>
+e^(-iθ) = cos θ − i sin θ
+
+<span class="c">// Formules cos et sin :</span>
+cos θ = (e^(iθ) + e^(-iθ)) / 2
+sin θ = (e^(iθ) − e^(-iθ)) / (2i)
+  </div>
+  <div class="sub">Écrire sous la forme A·cos(ωt + φ)</div>
+  <div class="mbox">
+    <div class="mbt">✅ Méthode</div>
+    <ol class="mlist">
+      <li>Développer A·cos(ωt+φ) = A·cos(φ)·cos(ωt) − A·sin(φ)·sin(ωt)</li>
+      <li>Identifier les coefficients de cos(ωt) et sin(ωt)</li>
+      <li>Calculer A = √(coeff_cos² + coeff_sin²)</li>
+      <li>Trouver φ : cos φ = coeff_cos/A et sin φ = −coeff_sin/A</li>
+    </ol>
+  </div>
+  <div class="sub">Plan complexe</div>
+  <div class="fb">
+M(a ; b) ↔ affixe z = a + ib
+<span class="hl">|z_B − z_A| = distance AB</span>
+arg(z_B − z_A) = angle de AB avec l'axe réel
+  </div>
+  <div class="sub">Valeurs d'argument remarquables</div>
+  <div class="g4">
+    <div class="mc"><div class="mcl">z réel positif</div><div class="mcv">arg = 0</div></div>
+    <div class="mc"><div class="mcl">z réel négatif</div><div class="mcv">arg = π</div></div>
+    <div class="mc"><div class="mcl">z imag. pur +</div><div class="mcv">arg = π/2</div></div>
+    <div class="mc"><div class="mcl">a = b > 0</div><div class="mcv">arg = π/4</div></div>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Pièges</div>• Confondre module (distance à l'origine) et argument (angle). • L'argument est en radians (pas en degrés). • Pour la division : toujours multiplier par le conjugué du dénominateur.</div>
+</div>
+</div>
+
+<!-- M6: Calcul intégral -->
+<div class="sc" id="m6">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M6</span><span class="cht">Calcul Intégral</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Primitives usuelles — TABLEAU À MÉMORISER</div>
+  <table class="tbl2">
+    <tr><th>f(x)</th><th>F(x) — une primitive</th><th>Condition</th></tr>
+    <tr><td>k (cst)</td><td>kx</td><td>—</td></tr>
+    <tr><td>xⁿ</td><td>xⁿ⁺¹ / (n+1)</td><td>n ≠ −1</td></tr>
+    <tr><td>1/x</td><td>ln|x|</td><td>x ≠ 0</td></tr>
+    <tr><td>eˣ</td><td>eˣ</td><td>—</td></tr>
+    <tr><td>e^(ax)</td><td>e^(ax) / a</td><td>a ≠ 0</td></tr>
+    <tr><td>cos x</td><td>sin x</td><td>—</td></tr>
+    <tr><td>sin x</td><td>−cos x</td><td>—</td></tr>
+    <tr><td>cos(ax)</td><td>sin(ax) / a</td><td>—</td></tr>
+    <tr><td>u' × eᵘ</td><td>eᵘ</td><td>—</td></tr>
+    <tr><td>u' / u</td><td>ln|u|</td><td>u ≠ 0</td></tr>
+    <tr><td>n·u'·uⁿ⁻¹</td><td>uⁿ</td><td>n ≠ 0</td></tr>
+    <tr><td>u'·uⁿ</td><td>uⁿ⁺¹/(n+1)</td><td>n ≠ −1</td></tr>
+  </table>
+  <div class="sub">Calcul d'intégrale définie</div>
+  <div class="fb">
+∫ₐᵇ f(x) dx = [F(x)]ₐᵇ = <span class="hl">F(b) − F(a)</span>
+
+<span class="c">// Propriétés :</span>
+∫ₐᵇ f dx = −∫ᵦₐ f dx
+∫ₐᵃ f dx = 0
+∫ₐᶜ f dx = ∫ₐᵇ f dx + ∫ᵦᶜ f dx
+  </div>
+  <div class="sub">Aires sous des courbes</div>
+  <div class="fb">
+<span class="c">// Aire entre f et l'axe des x sur [a;b] :</span>
+A = |∫ₐᵇ f(x) dx|     <span class="c">// valeur absolue !</span>
+
+<span class="c">// Si f change de signe : découper [a;b] aux zéros de f !</span>
+A = ∫ₐᶜ f(x) dx + |∫ᶜᵇ f(x) dx|   <span class="c">// si f(x) ≥ 0 sur [a,c] et f(x) ≤ 0 sur [c,b]</span>
+
+<span class="c">// Aire entre deux courbes f et g sur [a;b] :</span>
+A = ∫ₐᵇ |f(x) − g(x)| dx
+  </div>
+  <div class="sub">Valeur moyenne et vérification de primitive</div>
+  <div class="fb">
+Valeur moyenne sur [a;b] : <span class="hl">m = 1/(b−a) × ∫ₐᵇ f(x) dx</span>
+
+Vérifier que F est une primitive de f :
+  → Calculer F'(x) et vérifier que <span class="hl">F'(x) = f(x)</span>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Erreur classique</div>Oublier la valeur absolue dans le calcul d'aire. Si f(x) < 0 sur [a;b], alors ∫f dx < 0 mais l'aire est positive. Toujours analyser le signe de f avant d'intégrer.</div>
+</div>
+</div>
+
+<!-- M7: Transformations -->
+<div class="sc" id="m7">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M7</span><span class="cht">Transformations dans le Plan Complexe</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Translation</div>
+  <div class="fb">
+Vecteur de translation : w̄ (affixe w)
+<span class="hl">z' = z + w</span>
+<span class="c">// Tout point M d'affixe z → image M' d'affixe z' = z + w</span>
+  </div>
+  <div class="sub">Rotation</div>
+  <div class="fb">
+Centre Ω d'affixe ω, angle θ :
+<span class="hl">z' − ω = e^(iθ) × (z − ω)</span>
+<span class="c">// Conservation des distances : |z'−ω| = |z−ω|</span>
+<span class="c">// θ > 0 : sens direct (anti-horaire)</span>
+<span class="c">// θ < 0 : sens indirect (horaire)</span>
+  </div>
+  <div class="sub">Homothétie</div>
+  <div class="fb">
+Centre Ω d'affixe ω, rapport k ∈ ℝ :
+<span class="hl">z' − ω = k × (z − ω)</span>
+<span class="c">// k > 0 : même côté que z par rapport à Ω</span>
+<span class="c">// k < 0 : côté opposé</span>
+<span class="c">// |k| > 1 : agrandissement ; |k| < 1 : réduction</span>
+  </div>
+  <div class="sub">Similitude directe</div>
+  <div class="fb">
+Composée d'une rotation et d'une homothétie :
+<span class="hl">z' = a·z + b</span>    (a, b ∈ ℂ, a ≠ 0)
+
+Rapport : |a| ; Angle : arg(a)
+Point fixe : z₀ = b / (1 − a)  si a ≠ 1
+  </div>
+</div>
+</div>
+
+<!-- M8: Compositions -->
+<div class="sc" id="m8">
+<div class="sh m" onclick="tog(this)">
+  <div class="shl"><span class="chn cm">M8</span><span class="cht">Compositions de Fonctions</span></div>
+  <div class="shr"><span class="prio p1">★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Définition et dérivée</div>
+  <div class="fb">
+(f ∘ g)(x) = f(g(x))    <span class="c">// g appliquée en premier, puis f</span>
+
+<span class="c">// Dérivée de la composée (règle de la chaîne) :</span>
+(f ∘ g)'(x) = <span class="hl">g'(x) × f'(g(x))</span>
+
+<span class="c">// Ou sous la forme "dérivée extérieure × dérivée intérieure" :</span>
+[f(u)]' = <span class="hl">u' × f'(u)</span>
+  </div>
+  <div class="sub">Exemples de dérivées composées</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">sin(u)</div><div class="mcv">u' × cos(u)</div></div>
+    <div class="mc"><div class="mcl">cos(u)</div><div class="mcv">−u' × sin(u)</div></div>
+    <div class="mc"><div class="mcl">uⁿ</div><div class="mcv">n × u' × uⁿ⁻¹</div></div>
+    <div class="mc"><div class="mcl">√u</div><div class="mcv">u' / (2√u)</div></div>
+    <div class="mc"><div class="mcl">1/u</div><div class="mcv">−u' / u²</div></div>
+    <div class="mc"><div class="mcl">ln(u)</div><div class="mcv">u' / u</div></div>
+  </div>
+  <div class="sub">Calcul intégral des composées</div>
+  <div class="fb">
+∫ f(u(x)) × u'(x) dx = F(u(x)) + C
+<span class="c">// où F est une primitive de f</span>
+
+<span class="c">// Exemples :</span>
+∫ u' × eᵘ dx = eᵘ + C
+∫ u' / u  dx = ln|u| + C
+∫ u' × uⁿ dx = uⁿ⁺¹/(n+1) + C
+  </div>
+</div>
+</div>
+</div><!-- end tab-math -->
+
+<!-- ================== TAB PHYSIQUE ================== -->
+<div class="tab" id="tab-phys">
+<div class="tbanner p">
+  <div>
+    <div class="tbl tbp">Physique-Chimie</div>
+    <div class="tbsub">14 points sur 20 · Énergie électrique + Ondes = priorités absolues</div>
+  </div>
+</div>
+
+<!-- P1: Mesures -->
+<div class="sc" id="p1">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P1</span><span class="cht">Mesures & Incertitudes</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Types d'incertitudes</div>
+  <div class="fb pp">
+<span class="c">// Type A — répétabilité (mesures répétées) :</span>
+u_A(x) = <span class="hlp">s / √n</span>
+  s = écart-type expérimental, n = nombre de mesures
+  s = √[ Σ(xᵢ − x̄)² / (n−1) ]
+
+<span class="c">// Type B — résolution de l'appareil :</span>
+u_B(x) = <span class="hlp">Δx / √3</span>
+  Δx = demi-largeur de la distribution (précision de lecture)
+  </div>
+  <div class="sub">Composition et écriture du résultat</div>
+  <div class="fb pp">
+<span class="c">// Incertitude composée (si A dépend de x et y) :</span>
+A = x + y  ou  A = x − y :  <span class="hlp">u(A) = √(u(x)² + u(y)²)</span>
+A = x × y  ou  A = x / y :  <span class="hlp">u(A)/A = √((u(x)/x)² + (u(y)/y)²)</span>
+A = k × x                 :  <span class="hlp">u(A) = |k| × u(x)</span>
+
+<span class="c">// Incertitude élargie (k=2 → confiance 95%) :</span>
+U = 2 × u(A)
+
+<span class="c">// Écriture du résultat :</span>
+(valeur ± U) unité    <span class="c">// ex : (12,5 ± 0,3) V</span>
+→ U arrondi à 1-2 chiffres significatifs
+→ valeur arrondie à la même décimale que U
+  </div>
+  <div class="ibox"><div class="ibt">Conseil bac</div>Dans les exercices, on demande souvent d'écrire le résultat final avec l'incertitude. Toujours respecter le nombre de chiffres significatifs cohérent avec l'incertitude.</div>
+</div>
+</div>
+
+<!-- P2: Énergie électrique -->
+<div class="sc" id="p2">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P2</span><span class="cht">Énergie Électrique</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog open">▾</span></div>
+</div>
+<div class="sb open">
+  <div class="ibox"><div class="ibt">Priorité maximale</div>Ce chapitre est présent dans presque tous les sujets bac STI2D. Maîtriser les calculs de puissance, rendement et régime sinusoïdal est indispensable.</div>
+  <div class="sub">Lois fondamentales en courant continu</div>
+  <div class="fb pp">
+Loi d'Ohm :   <span class="hlp">U = R × I</span>             (U en V, R en Ω, I en A)
+Puissance  :  <span class="hlp">P = U × I = R × I² = U²/R</span>  (P en Watts)
+Énergie    :  <span class="hlp">E = P × t</span>               (E en Joules = W·s)
+En kWh     :  E(kWh) = P(kW) × t(h)
+
+<span class="c">// Association de résistances :</span>
+Série   : R_tot = R₁ + R₂ + ...
+Parallèle : 1/R_tot = 1/R₁ + 1/R₂ + ...
+
+<span class="c">// Pont diviseur de tension :</span>
+U₁ = U_tot × R₁/(R₁+R₂)
+  </div>
+  <div class="sub">Régime sinusoïdal — LE PLUS IMPORTANT</div>
+  <div class="fb pp">
+Signal : <span class="hlp">u(t) = Uₘ × cos(ωt + φ)</span>
+Pulsation : ω = 2πf = 2π/T   (rad/s)
+Période : T = 1/f             (s)
+
+<span class="c">// Valeurs efficaces (dites "rms") :</span>
+<span class="hlp">U_eff = Uₘ / √2  ≈  0,707 × Uₘ</span>
+<span class="hlp">Uₘ = U_eff × √2  ≈  1,414 × U_eff</span>
+
+<span class="c">// Réseau français : U_eff = 230 V, f = 50 Hz → Uₘ ≈ 325 V, T = 20 ms</span>
+
+<span class="c">// Puissances en régime sinusoïdal :</span>
+Puissance active    P = <span class="hlp">U_eff × I_eff × cos φ</span>   (en Watts, utile)
+Puissance réactive  Q = U_eff × I_eff × sin φ   (en VAR)
+Puissance apparente S = U_eff × I_eff            (en VA)
+Relation : <span class="hlp">S² = P² + Q²</span>
+  </div>
+  <div class="sub">Rendement et transport de l'énergie</div>
+  <div class="fb pp">
+<span class="hlp">η = P_utile / P_absorbée</span>   (sans unité, 0 ≤ η ≤ 1)
+η% = η × 100%
+Pertes = P_absorbée × (1 − η)
+
+<span class="c">// Transport haute tension (ligne) :</span>
+Pertes Joule dans la ligne : P_perte = R_ligne × I²
+→ Pour réduire les pertes : augmenter U → réduire I
+
+<span class="c">// Transformateur idéal :</span>
+U₁/U₂ = N₁/N₂ = I₂/I₁    (conserve la puissance : P₁ = P₂)
+  </div>
+  <div class="sub">Lecture d'oscilloscope</div>
+  <div class="fb pp">
+Axe Y (tensions) : calibre en V/div → <span class="hlp">Uₘ = nombre_divs × calibre_Y</span>
+Axe X (temps)    : calibre en ms/div → <span class="hlp">T  = nombre_divs × calibre_X</span>
+Fréquence : f = 1/T
+  </div>
+  <div class="mbox">
+    <div class="mbt">✅ Méthode calcul de puissance sinusoïdale</div>
+    <ol class="mlist">
+      <li>Lire Uₘ sur l'oscilloscope → calculer U_eff = Uₘ/√2</li>
+      <li>Lire T sur l'oscilloscope → calculer f = 1/T</li>
+      <li>Identifier cos φ (donné ou à calculer)</li>
+      <li>Calculer P = U_eff × I_eff × cos φ</li>
+    </ol>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Erreur classique</div>Confondre valeur de crête (Uₘ) et valeur efficace (U_eff). La valeur "230 V du secteur" est la valeur EFFICACE. La valeur crête est 230 × √2 ≈ 325 V. Toujours préciser laquelle on utilise.</div>
+</div>
+</div>
+
+<!-- P3: Oxydo-réduction -->
+<div class="sc" id="p3">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P3</span><span class="cht">Oxydo-réduction & Piles</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Définitions</div>
+  <ul class="plist">
+    <li><b>Oxydation</b> : perte d'électrons (le réducteur s'oxyde → no augmente)</li>
+    <li><b>Réduction</b> : gain d'électrons (l'oxydant se réduit → no diminue)</li>
+    <li><b>Couple redox</b> Ox/Red : ex. Cu²⁺/Cu, Fe³⁺/Fe²⁺, MnO₄⁻/Mn²⁺</li>
+  </ul>
+  <div class="sub">Écriture des demi-équations</div>
+  <div class="mbox">
+    <div class="mbt">✅ Méthode en 5 étapes</div>
+    <ol class="mlist">
+      <li>Écrire l'espèce initiale → espèce finale</li>
+      <li>Équilibrer les atomes principaux (sauf H et O)</li>
+      <li>Équilibrer les atomes O en ajoutant H₂O</li>
+      <li>Équilibrer les H en ajoutant H⁺</li>
+      <li>Équilibrer les charges avec des e⁻</li>
+    </ol>
+  </div>
+  <div class="fb pp">
+<span class="c">// Exemples de demi-équations importantes :</span>
+Cu²⁺ + 2e⁻  →  Cu                          <span class="c">// réduction</span>
+Fe           →  Fe²⁺ + 2e⁻                  <span class="c">// oxydation</span>
+MnO₄⁻ + 8H⁺ + 5e⁻  →  Mn²⁺ + 4H₂O        <span class="c">// réduction (permanganate)</span>
+Cr₂O₇²⁻ + 14H⁺ + 6e⁻ → 2Cr³⁺ + 7H₂O     <span class="c">// réduction (dichromate)</span>
+
+<span class="c">// Réaction globale : multiplier pour égaliser les e⁻, puis additionner</span>
+  </div>
+  <div class="sub">Piles électrochimiques</div>
+  <div class="fb pp">
+Anode (−)   : <span class="hlp">oxydation</span> du réducteur (perd des e⁻)
+Cathode (+) : <span class="hlp">réduction</span> de l'oxydant (gagne des e⁻)
+Pont salin  : circulation des ions (maintient l'électroneutralité)
+f.e.m. : E = E₊ − E₋ = E_cathode − E_anode  (en Volts)
+
+<span class="c">// Les e⁻ circulent de l'anode vers la cathode (dans le circuit externe)</span>
+<span class="c">// Le courant conventionnel va de la cathode vers l'anode</span>
+  </div>
+  <div class="sub">Quantités en solution</div>
+  <div class="fb pp">
+n = m/M = C × V = n_e × Q/F
+C : concentration molaire (mol/L)
+V : volume (L)
+M : masse molaire (g/mol)
+F = 96 500 C/mol (constante de Faraday)
+  </div>
+</div>
+</div>
+
+<!-- P4: Échanges thermiques -->
+<div class="sc" id="p4">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P4</span><span class="cht">Échanges Thermiques</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Conduction thermique</div>
+  <div class="fb pp">
+Flux thermique     : <span class="hlp">Φ = ΔT / R_th</span>   (en Watts)
+Résistance thermique : <span class="hlp">R_th = e / (λ × S)</span>
+  e : épaisseur (m) ; λ : conductivité thermique (W/(m·K)) ; S : surface (m²)
+
+<span class="c">// Associations de résistances thermiques :</span>
+En série    : R_tot = R₁ + R₂ + ...        <span class="c">// même surface, ΔT = ΔT₁ + ΔT₂</span>
+En parallèle : 1/R_tot = 1/R₁ + 1/R₂ + ...  <span class="c">// même ΔT, Φ = Φ₁ + Φ₂</span>
+
+<span class="c">// Convection (à la surface) :</span>
+R_th,conv = 1 / (h × S)     h : coefficient de convection (W/(m²·K))
+  </div>
+  <div class="sub">Énergie thermique</div>
+  <div class="fb pp">
+Chauffage/refroidissement : Q = <span class="hlp">m × c × ΔT</span>
+  c : capacité thermique massique (J/(kg·K)) ; ΔT = T_finale − T_initiale
+
+Changement d'état (T = cst) :
+  Fusion/Solidification : Q = <span class="hlp">m × L_f</span>   (L_f en J/kg)
+  Vaporisation/Condensation : Q = <span class="hlp">m × L_v</span>
+
+Énergie transferrée sur Δt : <span class="hlp">Q = Φ × Δt</span>
+  </div>
+  <div class="sub">Bilan d'énergie (1er principe)</div>
+  <div class="fb pp">
+ΔU = W + Q    <span class="c">// Variation énergie interne = Travail reçu + Chaleur reçue</span>
+Si système clos à volume constant : ΔU = Q
+Si adiabatique (Q=0) : ΔU = W
+  </div>
+</div>
+</div>
+
+<!-- P5: Énergie mécanique -->
+<div class="sc" id="p5">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P5</span><span class="cht">Énergie Mécanique</span></div>
+  <div class="shr"><span class="prio p1">★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Principe Fondamental de la Dynamique (PFD)</div>
+  <div class="fb pp">
+<span class="hlp">ΣF_ext = m × a</span>   (2ème loi de Newton)
+En composantes : ΣFₓ = m·aₓ  ;  ΣFᵧ = m·aᵧ
+  </div>
+  <div class="sub">Travail et énergies</div>
+  <div class="fb pp">
+Travail d'une force constante : <span class="hlp">W = F × d × cos α</span>
+  α = angle entre la force et le déplacement
+  W > 0 : force motrice ; W < 0 : force résistante ; W = 0 : force ⊥ dépl.
+
+Travail du poids : W_P = m·g·(z_A − z_B)
+
+Énergie cinétique : <span class="hlp">E_c = ½ × m × v²</span>
+Énergie potentielle : <span class="hlp">E_p = m × g × h</span>  (référence h = 0 à choisir)
+Énergie mécanique : <span class="hlp">E_m = E_c + E_p</span>
+  </div>
+  <div class="sub">Théorèmes</div>
+  <div class="fb pp">
+Théorème de l'énergie cinétique :
+  <span class="hlp">ΔE_c = ΣW(F_ext)</span>  = somme de tous les travaux
+
+Sans frottement → conservation de l'énergie mécanique :
+  <span class="hlp">E_m = constante</span>  →  E_c,A + E_p,A = E_c,B + E_p,B
+
+Avec frottement (force f) :
+  E_m,B = E_m,A + W_frottement  (W_frottem. < 0 → perte d'énergie)
+  </div>
+</div>
+</div>
+
+<!-- P6: Radioactivité -->
+<div class="sc" id="p6">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P6</span><span class="cht">Radioactivité</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Structure du noyau et réactions</div>
+  <div class="fb pp">
+Notation : <span class="hlp">ᴬ_Z X</span>    A = nb de masse (nucléons) ; Z = nb atomique (protons)
+Neutrons : N = A − Z
+
+<span class="c">// Types de désintégration :</span>
+α (alpha) : ᴬ_Z X → ᴬ⁻⁴_(Z-2) Y + ⁴_₂He   <span class="c">// perd 4 nucléons et 2 protons</span>
+β⁻ (béta−) : ᴬ_Z X → ᴬ_(Z+1) Y + ⁰_(-1)e + ν̄   <span class="c">// neutron → proton</span>
+β⁺ (béta+) : ᴬ_Z X → ᴬ_(Z-1) Y + ⁰_(+1)e + ν    <span class="c">// proton → neutron</span>
+γ (gamma) : émission photon haute énergie  <span class="c">// A et Z inchangés</span>
+
+<span class="c">// Loi de conservation : A et Z sont conservés (loi de Soddy)</span>
+  </div>
+  <div class="sub">Loi de décroissance radioactive</div>
+  <div class="fb pp">
+Nombre de noyaux : <span class="hlp">N(t) = N₀ × e^(−λt)</span>
+Activité          : <span class="hlp">A(t) = A₀ × e^(−λt)</span>   (en Becquerels, Bq)
+Masse             : m(t) = m₀ × e^(−λt)
+
+Demi-vie (période) : <span class="hlp">t½ = ln(2) / λ ≈ 0,693 / λ</span>
+Constante          : λ = ln(2) / t½
+
+Après n demi-vies  : N = N₀ / 2ⁿ
+Activité           : A = λ × N    (Becquerel = 1 désint./s)
+  </div>
+  <div class="sub">Dosimétrie</div>
+  <div class="g3">
+    <div class="mc"><div class="mcl">Dose absorbée</div><div class="mcv">D = E/m (Gy = J/kg)</div></div>
+    <div class="mc"><div class="mcl">Dose équivalente</div><div class="mcv">H = D × w_R (Sv)<br>w_R=1 (γ,β) ; 20 (α)</div></div>
+    <div class="mc"><div class="mcl">Dose efficace</div><div class="mcv">E = Σ H × w_T (Sv)<br>tient compte de l'organe</div></div>
+  </div>
+  <div class="mbox">
+    <div class="mbt">✅ Méthode demi-vie</div>
+    <ol class="mlist">
+      <li>Identifier λ à partir de la courbe ou de t½ : λ = ln(2)/t½</li>
+      <li>Écrire N(t) = N₀ × e^(−λt)</li>
+      <li>Résoudre l'équation pour le temps demandé</li>
+    </ol>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Piège</div>Ne pas confondre activité A (en Bq) et nombre de noyaux N. Relation : A = λ × N. L'activité n'est pas le nombre de noyaux !</div>
+</div>
+</div>
+
+<!-- P7: Ondes sonores -->
+<div class="sc" id="p7">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P7</span><span class="cht">Ondes Sonores</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Caractéristiques des ondes</div>
+  <div class="fb pp">
+Relation fondamentale : <span class="hlp">v = λ × f = λ / T</span>
+  v : célérité (m/s) ; λ : longueur d'onde (m) ; f : fréquence (Hz) ; T : période (s)
+
+Ondes sonores dans l'air : v ≈ 340 m/s (à 20°C)
+  → v augmente avec la température
+
+<span class="c">// Domaines de fréquences :</span>
+Infrasons     : f < 20 Hz
+Sons audibles : 20 Hz ≤ f ≤ 20 000 Hz
+Ultrasons     : f > 20 000 Hz
+  </div>
+  <div class="sub">Niveau sonore en décibels</div>
+  <div class="fb pp">
+<span class="hlp">L = 10 × log₁₀(I / I₀)</span>   (en dB)
+I₀ = 10⁻¹² W/m²  (seuil d'audibilité à 1 kHz)
+
+<span class="c">// Seuils importants :</span>
+L = 0 dB   → seuil d'audibilité
+L = 40 dB  → bibliothèque
+L = 80 dB  → rue bruyante
+L = 120 dB → seuil de douleur
+
+<span class="c">// Règles de calcul :</span>
+Si I double   → L augmente de +3 dB
+Si I × 10     → L augmente de +10 dB
+n sources identiques → L_tot = L_une + 10×log(n)
+  </div>
+  <div class="sub">Effet Doppler</div>
+  <div class="fb pp">
+Source s'approche → fréquence perçue > fréquence émise   <span class="c">// son "plus aigu"</span>
+Source s'éloigne  → fréquence perçue < fréquence émise   <span class="c">// son "plus grave"</span>
+
+f_perçue = f_source × (v ± v_obs) / (v ∓ v_source)
+  </div>
+  <div class="sub">Applications</div>
+  <ul class="plist">
+    <li>Sonar : mesure de distance avec ultrasons (d = v × Δt / 2)</li>
+    <li>Échographie médicale : ultrasons réfléchis par les tissus</li>
+    <li>Contrôle non destructif (détection de fissures)</li>
+  </ul>
+</div>
+</div>
+
+<!-- P8: Ondes EM -->
+<div class="sc" id="p8">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P8</span><span class="cht">Ondes EM & Énergie des Photons</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Propriétés et formules fondamentales</div>
+  <div class="fb pp">
+Célérité dans le vide : <span class="hlp">c = 3,00 × 10⁸ m/s</span>
+Relation : <span class="hlp">c = λ × f</span>    →    λ = c/f  ;  f = c/λ
+
+Énergie d'un photon : <span class="hlp">E = h × f = h × c / λ</span>
+  h = 6,63 × 10⁻³⁴ J·s  (constante de Planck)
+  Conversion : 1 eV = 1,6 × 10⁻¹⁹ J
+  </div>
+  <div class="sub">Spectre électromagnétique</div>
+  <div class="specbar">
+    <div class="seg" style="background:#4A4A8A;flex:2">Radio</div>
+    <div class="seg" style="background:#6A5ACD;flex:1.2">Micro</div>
+    <div class="seg" style="background:#A0522D;flex:1.2">IR</div>
+    <div class="seg" style="background:#8B0000;flex:.3">R</div>
+    <div class="seg" style="background:#FF4500;flex:.2">Or</div>
+    <div class="seg" style="background:#FFD700;flex:.2">J</div>
+    <div class="seg" style="background:#228B22;flex:.2">V</div>
+    <div class="seg" style="background:#00008B;flex:.2">B</div>
+    <div class="seg" style="background:#4B0082;flex:.2">Vi</div>
+    <div class="seg" style="background:#808080;flex:1">UV</div>
+    <div class="seg" style="background:#404040;flex:.8">X</div>
+    <div class="seg" style="background:#202020;flex:.6">γ</div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin:2px 0 8px">
+    <span>λ grande / f petite / E faible</span>
+    <span>λ petite / f grande / E forte</span>
+  </div>
+  <div class="sub">Domaine visible et interactions</div>
+  <div class="g4">
+    <div class="mc"><div class="mcl">Violet</div><div class="mcv">≈ 400 nm</div></div>
+    <div class="mc"><div class="mcl">Bleu</div><div class="mcv">≈ 450 nm</div></div>
+    <div class="mc"><div class="mcl">Vert</div><div class="mcv">≈ 520 nm</div></div>
+    <div class="mc"><div class="mcl">Rouge</div><div class="mcv">≈ 700 nm</div></div>
+  </div>
+  <div class="sub">Applications par domaine</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">Radio / Micro-ondes</div><div class="mcv">TV, radio FM, Wi-Fi, 4G, four micro-ondes</div></div>
+    <div class="mc"><div class="mcl">Infrarouge</div><div class="mcv">Télécommandes, caméras thermiques</div></div>
+    <div class="mc"><div class="mcl">Ultraviolet</div><div class="mcv">Stérilisation, bronzage, analyse chimique</div></div>
+    <div class="mc"><div class="mcl">Rayons X / γ</div><div class="mcv">Radiographie médicale, radiothérapie</div></div>
+  </div>
+  <div class="wbox"><div class="wbt">⚠️ Piège</div>λ et f sont inversement proportionnels (λ = c/f). Plus la longueur d'onde est grande, plus la fréquence est petite et plus l'énergie est faible. Ne pas confondre !</div>
+</div>
+</div>
+
+<!-- P9: Matière -->
+<div class="sc" id="p9">
+<div class="sh p" onclick="tog(this)">
+  <div class="shl"><span class="chn cp">P9</span><span class="cht">Matière & Matériaux</span></div>
+  <div class="shr"><span class="prio p1">★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Combustions</div>
+  <div class="fb pp">
+Combustion complète d'un hydrocarbure CₙHₘ :
+<span class="hlp">CₙHₘ + (n + m/4)O₂ → n CO₂ + (m/2) H₂O</span>
+
+Exemple : CH₄ + 2O₂ → CO₂ + 2H₂O
+Combustion incomplète : produit CO (toxique) et suies (C)
+PCI/PCS : énergie libérée par kg de combustible (kJ/kg)
+  </div>
+  <div class="sub">Réactions acido-basiques</div>
+  <div class="fb pp">
+pH = <span class="hlp">−log[H₃O⁺]</span>   →   [H₃O⁺] = 10^(−pH)
+Ke = [H₃O⁺][OH⁻] = 10⁻¹⁴ à 25°C   (pKe = 14)
+Solution acide : pH < 7 ; Neutre : pH = 7 ; Basique : pH > 7
+  </div>
+  <div class="sub">Propriétés des matériaux</div>
+  <table class="tbl2">
+    <tr><th>Famille</th><th>Propriétés clés</th><th>Exemples</th></tr>
+    <tr><td>Métaux/Alliages</td><td>Conducteurs élec./therm., ductiles, denses</td><td>Acier, Al, Cu, Ti</td></tr>
+    <tr><td>Polymères</td><td>Légers, isolants, déformables, variés</td><td>PET, PVC, PTFE, résines</td></tr>
+    <tr><td>Céramiques</td><td>Durs, réfractaires, isolants, fragiles</td><td>Verre, béton, alumine</td></tr>
+    <tr><td>Composites</td><td>Résistants + légers (fibres + matrice)</td><td>CFRP (carbone/époxy)</td></tr>
+  </table>
+</div>
+</div>
+</div><!-- end tab-phys -->
+
+<!-- ================== TAB 2I2D ================== -->
+<div class="tab" id="tab-tech">
+<div class="tbanner t">
+  <div>
+    <div class="tbl tbt">2I2D — Ingénierie, Innovation & Développement Durable</div>
+    <div class="tbsub">Écrite (coeff 9) + Pratique (coeff 7) · Réviser tous les cours 1ère + Terminale</div>
+  </div>
+</div>
+
+<!-- T1: Analyse fonctionnelle -->
+<div class="sc" id="t1">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T1</span><span class="cht">Analyse Fonctionnelle</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog open">▾</span></div>
+</div>
+<div class="sb open">
+  <div class="sub">Cahier des Charges Fonctionnel (CdCF)</div>
+  <ul class="plist">
+    <li><b>Fonction Principale (FP)</b> : raison d'être du produit — relie le produit à 2 éléments de l'environnement. Ex : « FP1 : permettre à l'utilisateur d'actionner le mécanisme »</li>
+    <li><b>Fonction de Contrainte (FC)</b> : limitation imposée par l'env. Ex : « FC1 : résister à une température max de 80°C »</li>
+    <li>Chaque fonction est caractérisée par un <b>critère</b>, un <b>niveau</b> et une <b>flexibilité</b> (F0 = limite stricte, F1 = négociable avec pénalité, F2 = souhaitée)</li>
+  </ul>
+  <div class="sub">Diagramme Pieuvre (analyse du besoin)</div>
+  <div class="fb tt">
+Produit au centre → éléments de l'environnement autour
+Flèche entre produit et 2 éléments = FP (Fonction Principale)
+Flèche entre produit et 1 élément  = FC (Fonction Contrainte)
+
+Exemple d'environnement : Utilisateur, Énergie, Milieu, Mainteneur, Norme, ...
+  </div>
+  <div class="sub">Diagramme FAST (décomposition fonctionnelle)</div>
+  <div class="fb tt">
+Structure : Pourquoi ? ← Quoi ? (Function) → Comment ?
+Décomposition hiérarchique du plus abstrait au plus concret
+Du besoin → fonctions de service → solutions techniques
+  </div>
+  <div class="sub">Modélisation SADT / IDEF0</div>
+  <div class="fb tt">
+Boîte = activité/fonction
+Gauche  → <span class="hlt">Entrée</span>  (matière, information, énergie)
+Droite  → <span class="hlt">Sortie</span>  (résultat de l'activité)
+Haut    → <span class="hlt">Contrôle</span> (contraintes, règles)
+Bas     → <span class="hlt">Mécanisme</span> (moyens, ressources)
+
+Décomposition hiérarchique : A0 → A1, A2, ... → A11, A12, ...
+  </div>
+  <div class="sub">Diagrammes SysML utilisés en STI2D</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">Diagramme des exigences (req)</div><div class="mcv">Liste les exigences fonctionnelles et de performance</div></div>
+    <div class="mc"><div class="mcl">Diagramme de blocs (bdd)</div><div class="mcv">Structure interne, composants et connexions</div></div>
+    <div class="mc"><div class="mcl">Diagramme d'activité</div><div class="mcv">Enchaînement des actions et décisions</div></div>
+    <div class="mc"><div class="mcl">Diagramme de séquence</div><div class="mcv">Échanges entre composants dans le temps</div></div>
+  </div>
+</div>
+</div>
+
+<!-- T2: Chaîne fonctionnelle -->
+<div class="sc" id="t2">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T2</span><span class="cht">Chaîne Fonctionnelle</span></div>
+  <div class="shr"><span class="prio p3">★★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Chaîne d'information</div>
+  <div class="fb tt">
+<span class="hlt">ACQUÉRIR</span> → <span class="hlt">TRAITER</span> → <span class="hlt">COMMUNIQUER</span>
+
+ACQUÉRIR    : mesurer des grandeurs physiques
+  → Capteurs : temperature, pression, lumière, distance, courant...
+TRAITER     : algorithme de traitement (microcontrôleur, CPU, FPGA)
+  → Arduino, Raspberry Pi, PLC, DSP...
+COMMUNIQUER : présenter les résultats (afficheur, interface, réseau, actionneurs)
+  </div>
+  <div class="sub">Chaîne d'énergie</div>
+  <div class="fb tt">
+<span class="hlt">ALIMENTER</span> → <span class="hlt">DISTRIBUER</span> → <span class="hlt">CONVERTIR</span> → <span class="hlt">TRANSMETTRE</span> → <span class="hlt">AGIR</span>
+
+ALIMENTER   : source (batterie, secteur, solaire, pile à combustible)
+DISTRIBUER  : interrupteur, disjoncteur, relais, variateur de vitesse
+CONVERTIR   : moteur (élec→méca), résistance (élec→therm), vérin (pression→force)
+TRANSMETTRE : réducteur, engrenage, courroie, poulie, crémaillère
+AGIR        : roue, bras robot, piston, LED, haut-parleur
+  </div>
+  <div class="sub">Capteurs courants</div>
+  <table class="tbl2">
+    <tr><th>Capteur</th><th>Grandeur mesurée</th><th>Signal de sortie</th></tr>
+    <tr><td>NTC / PTC (thermistance)</td><td>Température</td><td>Résistance variable</td></tr>
+    <tr><td>LDR (photorésistance)</td><td>Lumière (éclairement)</td><td>Résistance variable</td></tr>
+    <tr><td>HC-SR04 (ultrasonique)</td><td>Distance</td><td>Durée impulsion PWM</td></tr>
+    <tr><td>MPU-6050 (IMU)</td><td>Accélération + gyroscope</td><td>I²C numérique</td></tr>
+    <tr><td>BMP280</td><td>Pression + température</td><td>I²C / SPI numérique</td></tr>
+    <tr><td>ACS712</td><td>Courant électrique</td><td>Tension analogique</td></tr>
+  </table>
+  <div class="sub">Actionneurs courants</div>
+  <table class="tbl2">
+    <tr><th>Actionneur</th><th>Type</th><th>Commande</th></tr>
+    <tr><td>Moteur à courant continu (CC)</td><td>Rotation continue</td><td>Tension, PWM</td></tr>
+    <tr><td>Moteur pas à pas (stepper)</td><td>Rotation angulaire précise</td><td>Séquence d'impulsions</td></tr>
+    <tr><td>Servomoteur</td><td>Position angulaire (0–180°)</td><td>Signal PWM</td></tr>
+    <tr><td>Vérin pneumatique</td><td>Translation linéaire</td><td>Électrovanne</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- T3: Systèmes numériques -->
+<div class="sc" id="t3">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T3</span><span class="cht">Systèmes Numériques & Codage</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Bases numériques et conversions</div>
+  <div class="fb tt">
+<span class="c">// Bases :</span>
+Décimal (base 10) : 0–9
+Binaire  (base  2) : 0, 1
+Hexa     (base 16) : 0–9, A=10, B=11, C=12, D=13, E=14, F=15
+
+<span class="c">// Décimal → Binaire : divisions successives par 2</span>
+25 ÷ 2 = 12 r.<span class="hlt">1</span>  → 12 ÷ 2 = 6 r.<span class="hlt">0</span>  → 6 ÷ 2 = 3 r.<span class="hlt">0</span>  → 3 ÷ 2 = 1 r.<span class="hlt">1</span>  → 1 ÷ 2 = 0 r.<span class="hlt">1</span>
+  Résultat : lire les restes de bas en haut → 25 = <span class="hlt">11001</span>₂
+
+<span class="c">// Binaire → Décimal : somme des puissances de 2</span>
+11001₂ = 1×2⁴ + 1×2³ + 0×2² + 0×2¹ + 1×2⁰ = 16+8+1 = <span class="hlt">25</span>
+
+<span class="c">// Hexa ↔ Binaire : 1 chiffre hexa = 4 bits</span>
+1A₁₆ = 0001 1010₂ = 26₁₀
+  </div>
+  <div class="sub">Logique combinatoire</div>
+  <table class="tbl2">
+    <tr><th>Porte</th><th>Symbole</th><th>A=0,B=0</th><th>A=0,B=1</th><th>A=1,B=0</th><th>A=1,B=1</th></tr>
+    <tr><td>ET (AND)</td><td>A ∧ B</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+    <tr><td>OU (OR)</td><td>A ∨ B</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    <tr><td>NON (NOT)</td><td>¬A</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>XOR</td><td>A ⊕ B</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+    <tr><td>NAND</td><td>¬(A∧B)</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+  </table>
+  <div class="fb tt">
+<span class="c">// Théorèmes de De Morgan :</span>
+¬(A ∧ B) = ¬A ∨ ¬B
+¬(A ∨ B) = ¬A ∧ ¬B
+  </div>
+  <div class="sub">Codage de l'information</div>
+  <div class="g3">
+    <div class="mc"><div class="mcl">Capacités</div><div class="mcv">1 bit : 2 valeurs<br>1 octet (8 bits) : 256 val.<br>1 ko = 1024 octets</div></div>
+    <div class="mc"><div class="mcl">ASCII</div><div class="mcv">A=65, a=97, 0=48<br>7 bits par caractère</div></div>
+    <div class="mc"><div class="mcl">Ordres de grandeur</div><div class="mcv">ko → Mo → Go → To<br>× 1024 à chaque fois</div></div>
+  </div>
+</div>
+</div>
+
+<!-- T4: Réseaux -->
+<div class="sc" id="t4">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T4</span><span class="cht">Réseaux & Télécommunications</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Modèle OSI (7 couches)</div>
+  <table class="tbl2">
+    <tr><th>N°</th><th>Couche</th><th>Rôle</th><th>Protocoles</th></tr>
+    <tr><td>7</td><td>Application</td><td>Interface utilisateur</td><td>HTTP, FTP, SMTP, DNS</td></tr>
+    <tr><td>6</td><td>Présentation</td><td>Format, chiffrement</td><td>SSL/TLS, JPEG</td></tr>
+    <tr><td>5</td><td>Session</td><td>Connexions</td><td>NetBIOS, RPC</td></tr>
+    <tr><td>4</td><td>Transport</td><td>Fiabilité, ports</td><td>TCP, UDP</td></tr>
+    <tr><td>3</td><td>Réseau</td><td>Adressage, routage</td><td>IP, ICMP</td></tr>
+    <tr><td>2</td><td>Liaison</td><td>Accès au medium</td><td>Ethernet, Wi-Fi</td></tr>
+    <tr><td>1</td><td>Physique</td><td>Transmission bits</td><td>câble, fibre, radio</td></tr>
+  </table>
+  <div class="sub">Adressage IP</div>
+  <div class="fb tt">
+IPv4 : 4 octets (ex : 192.168.1.42)
+Masque : 255.255.255.0 = /24 (24 bits réseaux, 8 bits hôtes)
+Adresses privées : 192.168.x.x / 10.x.x.x / 172.16-31.x.x
+DHCP : attribution automatique des adresses
+DNS : résolution nom de domaine ↔ adresse IP
+
+Débit : D = quantité_info (bits) / temps (s)
+  </div>
+  <div class="sub">Technologies de communication sans fil</div>
+  <table class="tbl2">
+    <tr><th>Technologie</th><th>Portée</th><th>Débit typique</th><th>Usage</th></tr>
+    <tr><td>Wi-Fi 802.11 (2,4 GHz)</td><td>~50 m</td><td>~150 Mbit/s</td><td>Internet local</td></tr>
+    <tr><td>Wi-Fi 802.11ac (5 GHz)</td><td>~30 m</td><td>~1,3 Gbit/s</td><td>Hautes perfs</td></tr>
+    <tr><td>Bluetooth 5.0</td><td>~40 m</td><td>~2 Mbit/s</td><td>Périphériques</td></tr>
+    <tr><td>ZigBee</td><td>~100 m</td><td>~250 kbit/s</td><td>Domotique IoT</td></tr>
+    <tr><td>NFC</td><td>< 10 cm</td><td>~400 kbit/s</td><td>Paiement, accès</td></tr>
+    <tr><td>4G/5G</td><td>km</td><td>100 Mbit/s–Gbit/s</td><td>Mobile, IoT</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- T5: Programmation -->
+<div class="sc" id="t5">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T5</span><span class="cht">Programmation Python & Arduino</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Python — structures de base</div>
+  <div class="cb">
+<span class="kw">if</span> condition:
+    <span class="cmt"># vrai</span>
+<span class="kw">elif</span> autre:
+    <span class="cmt"># sinon si</span>
+<span class="kw">else</span>:
+    <span class="cmt"># sinon</span>
+
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">n</span>):         <span class="cmt"># i de 0 à n-1</span>
+    ...
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">a</span>, <span class="num">b</span>, <span class="num">pas</span>):  <span class="cmt"># i de a à b-1 par pas</span>
+    ...
+<span class="kw">while</span> condition:
+    ...
+    <span class="kw">if</span> stop: <span class="kw">break</span>
+  </div>
+  <div class="sub">Python — fonctions et structures de données</div>
+  <div class="cb">
+<span class="kw">def</span> <span class="fn">ma_fonction</span>(param1, param2=<span class="num">0</span>):
+    <span class="cmt"># corps de la fonction</span>
+    <span class="kw">return</span> resultat
+
+<span class="cmt"># Listes</span>
+liste = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+liste.<span class="fn">append</span>(<span class="num">4</span>)     <span class="cmt"># ajouter en fin</span>
+liste.<span class="fn">insert</span>(<span class="num">0</span>, <span class="num">0</span>) <span class="cmt"># insérer à l'indice 0</span>
+liste.<span class="fn">remove</span>(<span class="num">2</span>)   <span class="cmt"># supprimer valeur 2</span>
+<span class="fn">len</span>(liste)        <span class="cmt"># longueur</span>
+liste[<span class="num">0</span>]          <span class="cmt"># premier élément</span>
+liste[-<span class="num">1</span>]         <span class="cmt"># dernier élément</span>
+liste[<span class="num">1</span>:<span class="num">3</span>]        <span class="cmt"># éléments indices 1 et 2</span>
+
+<span class="cmt"># Dictionnaires</span>
+dico = {<span class="str">"nom"</span>: <span class="str">"Alice"</span>, <span class="str">"age"</span>: <span class="num">17</span>}
+dico[<span class="str">"age"</span>]        <span class="cmt"># accéder à une valeur</span>
+dico[<span class="str">"ville"</span>] = <span class="str">"Paris"</span>  <span class="cmt"># ajouter</span>
+<span class="str">"nom"</span> <span class="kw">in</span> dico    <span class="cmt"># tester existence</span>
+  </div>
+  <div class="sub">Arduino (C/C++)</div>
+  <div class="cb">
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">9600</span>);            <span class="cmt">// port série</span>
+  <span class="fn">pinMode</span>(<span class="num">13</span>, OUTPUT);          <span class="cmt">// configurer pin 13 en sortie</span>
+  <span class="fn">pinMode</span>(<span class="num">2</span>, INPUT_PULLUP);     <span class="cmt">// pin 2 en entrée (résistance pull-up)</span>
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="cmt">// Sorties/Entrées numériques</span>
+  <span class="fn">digitalWrite</span>(<span class="num">13</span>, HIGH);       <span class="cmt">// mettre pin à 5V (HIGH)</span>
+  <span class="fn">digitalWrite</span>(<span class="num">13</span>, LOW);        <span class="cmt">// mettre pin à 0V (LOW)</span>
+  <span class="kw">int</span> b = <span class="fn">digitalRead</span>(<span class="num">2</span>);      <span class="cmt">// lire état numérique</span>
+
+  <span class="cmt">// Analogique</span>
+  <span class="kw">int</span> val = <span class="fn">analogRead</span>(A0);    <span class="cmt">// lecture 0-1023 (0-5V)</span>
+  <span class="kw">float</span> tension = val * <span class="num">5.0</span> / <span class="num">1023.0</span>;  <span class="cmt">// convertir en Volts</span>
+  <span class="fn">analogWrite</span>(<span class="num">9</span>, <span class="num">128</span>);         <span class="cmt">// PWM 0-255 (50% cycle)</span>
+
+  <span class="cmt">// Temporisation</span>
+  <span class="fn">delay</span>(<span class="num">1000</span>);                   <span class="cmt">// pause 1 seconde</span>
+  <span class="kw">unsigned long</span> t = <span class="fn">millis</span>();  <span class="cmt">// temps écoulé (ms)</span>
+}
+  </div>
+  <div class="sub">Algorithmes courants</div>
+  <div class="fb tt">
+<span class="c">// Calcul de moyenne :</span>
+somme = 0
+for val in valeurs: somme += val
+moyenne = somme / len(valeurs)
+
+<span class="c">// Mesure de distance ultrasonique (HC-SR04) :</span>
+distance_cm = (duree_µs × 0.034) / 2    <span class="c">// aller-retour divisé par 2</span>
+
+<span class="c">// Conversion analogique → physique :</span>
+grandeur = (analogRead(A0) / 1023.0) × V_max × coeff_capteur
+  </div>
+</div>
+</div>
+
+<!-- T6: Développement durable -->
+<div class="sc" id="t6">
+<div class="sh t" onclick="tog(this)">
+  <div class="shl"><span class="chn ct">T6</span><span class="cht">Développement Durable & Écoconception</span></div>
+  <div class="shr"><span class="prio p2">★★</span><span class="tog">▾</span></div>
+</div>
+<div class="sb">
+  <div class="sub">Les 3 piliers du développement durable</div>
+  <div class="g3">
+    <div class="mc"><div class="mcl">Économique</div><div class="mcv">Viabilité, emploi, croissance, production efficace</div></div>
+    <div class="mc"><div class="mcl">Social</div><div class="mcv">Équité, bien-être, santé, accès à l'éducation</div></div>
+    <div class="mc"><div class="mcl">Environnemental</div><div class="mcv">Ressources, biodiversité, climat, pollution</div></div>
+  </div>
+  <div class="sub">ACV — Analyse du Cycle de Vie</div>
+  <div class="fb tt">
+4 phases :
+1. <span class="hlt">Extraction</span> des matières premières (mines, agriculture, pétrole...)
+2. <span class="hlt">Fabrication</span> et transformation (usines, transport, énergie)
+3. <span class="hlt">Utilisation</span> (consommation d'énergie, maintenance, souvent la phase + impactante)
+4. <span class="hlt">Fin de vie</span> (recyclage, réutilisation, décharge, incinération)
+
+<span class="c">// Indicateurs d'impact :</span>
+GWP (Global Warming Potential) : kg CO₂ équivalent
+Énergie primaire consommée : MJ ou kWh
+Consommation d'eau
+Acidification, eutrophisation
+  </div>
+  <div class="sub">Énergie : renouvelable vs fossile</div>
+  <table class="tbl2">
+    <tr><th>Type</th><th>Sources</th><th>Avantages</th><th>Inconvénients</th></tr>
+    <tr><td>Renouvelables</td><td>Solaire, éolien, hydraulique, géothermie, biomasse</td><td>Inépuisables, faible CO₂</td><td>Intermittentes, stockage difficile</td></tr>
+    <tr><td>Fossiles</td><td>Charbon, pétrole, gaz naturel</td><td>Énergie dense, stockable</td><td>Épuisables, fort CO₂, pollution</td></tr>
+    <tr><td>Nucléaire</td><td>Uranium, Plutonium</td><td>Faible CO₂, puissant</td><td>Déchets radioactifs, risques</td></tr>
+  </table>
+  <div class="sub">Écoconception — 6 principes</div>
+  <ul class="plist">
+    <li><b>Durabilité</b> : allonger la durée de vie du produit</li>
+    <li><b>Réparabilité</b> : faciliter la réparation (vis standardisées, pas de colle irréversible)</li>
+    <li><b>Recyclabilité</b> : matériaux recyclables, faciliter le démontage (mono-matériaux)</li>
+    <li><b>Réduction à la source</b> : moins de matière, moins d'emballage</li>
+    <li><b>Efficacité énergétique</b> : réduire la consommation en usage</li>
+    <li><b>Substances dangereuses</b> : éviter métaux lourds, solvants toxiques (REACh, DEEE)</li>
+  </ul>
+  <div class="sub">Normes et réglementations</div>
+  <div class="g2">
+    <div class="mc"><div class="mcl">ISO 14001</div><div class="mcv">Management environnemental en entreprise</div></div>
+    <div class="mc"><div class="mcl">REACh</div><div class="mcv">Restriction des substances chimiques dangereuses</div></div>
+    <div class="mc"><div class="mcl">DEEE</div><div class="mcv">Déchets d'équipements électriques et électroniques</div></div>
+    <div class="mc"><div class="mcl">RE2020</div><div class="mcv">Réglementation environnementale bâtiment neuf</div></div>
+  </div>
+</div>
+</div>
+</div><!-- end tab-tech -->
+
+</div><!-- end main -->
+</div><!-- end wrap -->
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.tnb').forEach(b => b.classList.remove('am','ap','at'));
+  document.querySelectorAll('.sp').forEach(s => s.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+  document.getElementById('side-'+id).classList.add('on');
+  var cls = id==='math'?'am':id==='phys'?'ap':'at';
+  btn.classList.add(cls);
+}
+
+function tog(header) {
+  var body = header.nextElementSibling;
+  var icon = header.querySelector('.tog');
+  body.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+function goTo(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var body = el.querySelector('.sb');
+  var icon = el.querySelector('.tog');
+  if (!body.classList.contains('open')) {
+    body.classList.add('open');
+    icon.classList.add('open');
+  }
+  setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
+}
+
+// Open first sections by default
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.sb.open').forEach(function(sb) {
+    var icon = sb.previousElementSibling.querySelector('.tog');
+    if (icon) icon.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
